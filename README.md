@@ -12,7 +12,7 @@ Es un juguete para ver las piezas, no para trabajar con él: las herramientas ac
 
 ## Requisitos
 
-- Node.js 24.22.2 o posterior (`.node-version`).
+- Node.js 24.22.3 o posterior (`.node-version`).
 - Para ejecutarlo con un modelo: Docker. El artículo usó `ollama/ollama:0.40.16` con `llama3.2:3b` y `qwen3:4b`, en CPU.
 
 ## Tests
@@ -30,7 +30,7 @@ cp -r proyecto /tmp/proyecto-agente
 docker network create agente
 docker run --rm -d --name ollama --network agente -v ollama:/root/.ollama ollama/ollama:0.40.16
 docker exec ollama ollama pull qwen3:4b
-docker run --rm --network agente -v "$PWD/agente.mjs:/agente.mjs:ro" -v /tmp/proyecto-agente:/proyecto node:24.22.2 \
+docker run --rm --network agente -v "$PWD/agente.mjs:/agente.mjs:ro" -v /tmp/proyecto-agente:/proyecto node:24.22.3 \
   node /agente.mjs http://ollama:11434 qwen3:4b
 docker stop ollama && docker network rm agente
 ```
