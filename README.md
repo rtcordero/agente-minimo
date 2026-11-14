@@ -1,8 +1,8 @@
 # Un agente de programación mínimo
 
-Código del artículo [Cómo funciona un agente de IA para programar](https://rubentejera.com/como-funciona-un-agente-de-programacion/).
+Código del artículo [Qué es un agente de IA para programar y cómo funciona](https://rubentejera.com/como-funciona-un-agente-de-programacion/).
 
-Un agente de IA para programar, en 64 líneas de JavaScript y sin dependencias: un modelo de lenguaje, tres herramientas (ejecutar los tests, leer un fichero y escribirlo) y un bucle. Usa un modelo abierto en local con [Ollama](https://ollama.com/), sin clave ni coste.
+Un agente de IA para programar, en menos de 100 líneas de JavaScript y sin dependencias: un modelo de lenguaje, tres herramientas (ejecutar los tests, leer un fichero y escribirlo) y un bucle. Usa un modelo abierto en local con [Ollama](https://ollama.com/), sin clave ni coste.
 
 - `agente.mjs`: el agente completo.
 - `proyecto/`: el proyecto sobre el que trabaja, con un fallo a propósito: el descuento de socio debería empezar en 100 € y el código usa `>` en lugar de `>=`, así que uno de sus dos tests falla.
@@ -35,7 +35,7 @@ docker run --rm --network agente -v "$PWD/agente.mjs:/agente.mjs:ro" -v /tmp/pro
 docker stop ollama && docker network rm agente
 ```
 
-Probado el 13-11-2026 con `llama3.2:3b`. Con modelos pequeños, el resultado cambia mucho de uno a otro: en el artículo, uno propuso cambiar el test, otro citó una línea que no existe y el tercero arregló el fallo sin ejecutar los tests ni una vez.
+Probado el 14-11-2026 con Ollama 0.40.16, `llama3.2:3b` y `qwen3:4b`. Con modelos pequeños, el resultado cambia mucho: en el artículo, `llama3.2:3b` propuso cambiar el test (también cuando se le pidió que no lo hiciera, y además citó una línea que no existe), y `qwen3:4b` arregló el fallo sin ejecutar los tests ni una vez.
 
 ## Cómo se ha hecho
 

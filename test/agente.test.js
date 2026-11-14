@@ -55,6 +55,8 @@ test('cada resultado de una herramienta vuelve al contexto del modelo', async ()
 
   assert.equal(peticiones.length, 5);
   assert.match(peticiones[1].messages.at(-1).content, /fail 1/);
+  assert.match(peticiones[2].messages.at(-1).content, /export function precioFinal/);
+  assert.equal(peticiones[2].messages.at(-1).tool_name, 'leer_fichero');
   assert.match(peticiones[4].messages.at(-1).content, /fail 0/);
   assert.equal(readFileSync(join(proyecto, 'src/descuento.js'), 'utf8'), CODIGO_ARREGLADO);
   assert.match(stdout, /Paso 5: termina → Cambiado > por >=; los tests pasan\./);
